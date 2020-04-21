@@ -1,1 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
+public class Kmeans{
+  public static void main(String[] args) throws FileNotFoundException{
+      Scanner input = new Scanner( mew File("s1-cb.txt"));
+      ArrayList<integer> data= new ArrayList<integer>();
+      while (input.hasNext()){
+        data.add(input.next());
+      }
+  }
+}
