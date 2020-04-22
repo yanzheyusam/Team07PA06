@@ -1,42 +1,45 @@
+package kmeans;
+
 import java.util.ArrayList;
-import java.util.Random;
 
-public class Cluster{
-  private ArrayList<Sample> s;
-  public Sample cluster_point;
-  public int id;
+public class Cluster {
+    private ArrayList<Sample> cluster;
+    private Sample center;
+    public Cluster(){
+        cluster=new ArrayList<>();
+    }
+    public void generateCenter(ArrayList<Sample> clu){
+        int n=(int)(Math.random()*clu.size());
+        center=clu.remove(n);
+    }
+    public void addSample(int x,int y){
+        cluster.add(new Sample(x,y));
+    }
+    public void addSample(Sample x){
+        cluster.add(x);
+    }
+    public ArrayList<Sample> getCluster(){
+        return cluster;
+    }
 
-  public Cluster(int id){
-    this.id = id;
-    this.s = new ArrayList<Sample>();
-    this.cluster_point = null;
-  }
+    public Sample getCenter() {
+        return center;
+    }
 
-  public ArrayList<Sample> getSample(){
-    return this.s;
-  }
+    public void getNewCenter(){
+        int sumx=0;
+        int sumy=0;
+        for (Sample sample:cluster){
+            sumx+=sample.getX();
+            sumy+=sample.getY();
+        }
+        if (cluster.size()==0){
 
-  public void addSample(Sample point){
-    this.s.add(point);
-  }
+        }else {
+            center=new Sample(sumx/cluster.size(),sumy/cluster.size());
+        }
 
-  public void setSample(ArrayList<Sample> point){
-    this.s = point;
-  }
+        cluster=new ArrayList<>();
+    }
 
-  public int getId(){
-    return this.id;
-  }
-
-  public void clear(){
-    this.s.clear();
-  }
-
-  public Sample getClusterPoint(){
-    return this.cluster_point;
-  }
-
-  public void setClusterPoint(Sample point){
-    this.cluster_point = point;
-  }
 }
